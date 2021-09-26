@@ -1,64 +1,55 @@
 import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
-import dollar from '../../assets/dollar.jpg';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div className='sticky top-0 '>
       <nav className='bg-gray-800'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex items-center justify-between h-16'>
             <div className='flex items-center'>
-              <div className='flex-shrink-0'>
-                <a href='#'>
-                  <img
-                    className='h-14 w-15 object-cover border-2 rounded-3xl'
-                    src={dollar}
-                    alt='Dollar Sign'
-                  />
-                </a>
-              </div>
+              <div className='flex-shrink-0'></div>
               <div className='hidden md:block'>
                 <div className='ml-40 flex items-baseline space-x-4'>
                   <a
                     href='#'
-                    className=' hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium ml-20'
+                    className='transition-all	 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-mid font-medium ml-20'
                   >
                     Create an Expnase / Income
                   </a>
 
                   <a
                     href='#'
-                    className='ml-10 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    className=' transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     History
                   </a>
 
                   <a
                     href='#'
-                    className='ml-10 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    className=' transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     Reports
                   </a>
 
                   <a
                     href='#'
-                    className='ml-10 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    className='transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     About Us
                   </a>
 
                   <a
                     href='#'
-                    className='ml-10 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    className='transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     Contact Us
                   </a>
                   <a
                     href='#'
-                    className='ml-10 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    className='transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     Log In
                   </a>
