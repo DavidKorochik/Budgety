@@ -15,7 +15,7 @@ export default function Navbar() {
                 <div className='ml-40 flex items-baseline space-x-4'>
                   <a
                     href='#'
-                    className='transition-all	 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-mid font-medium ml-20'
+                    className='transition-all	hover:bg-gray-700 text-white px-3 py-2 rounded-md text-mid font-medium ml-10'
                   >
                     Create an Expnase / Income
                   </a>

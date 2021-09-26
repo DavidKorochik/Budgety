@@ -1,6 +1,7 @@
 body {
-  background-color: dimgrey;
   background-image: url('./assets/giphy.gif');
+  object-fit: cover;
+  background-size: cover;
 }
 
 html {
