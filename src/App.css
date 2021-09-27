@@ -1,9 +1,12 @@
-body {
-  background-image: url('./assets/giphy.gif');
-  object-fit: cover;
-  background-size: cover;
-}
-
 html {
   font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
+  --tw-bg-opacity: 1;
+  background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

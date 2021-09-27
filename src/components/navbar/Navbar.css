@@ -1,0 +1,29 @@
+.hovering {
+  border: none;
+  position: relative;
+}
+.hovering:hover {
+  border: none;
+}
+
+.hovering::after {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 5px;
+  left: 50%;
+  bottom: 0;
+  --tw-text-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-text-opacity));
+  transition: all ease-in-out 0.5s;
+}
+
+.hovering:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.hovering:focus {
+  --tw-text-opacity: 1;
+  color: rgba(59, 130, 246, var(--tw-text-opacity));
+}

@@ -1,58 +1,65 @@
 import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='sticky top-0 '>
+    <div className='sticky top-0'>
       <nav className='bg-gray-800'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='flex items-center justify-between h-16'>
+          <div className='flex items-center justify-end h-16'>
+            <Link
+              to='/about'
+              className='text-2xl mr-96 text-blue-500 uppercase px-3 py-2 text-mid font-bold'
+            >
+              Budgety
+            </Link>
             <div className='flex items-center'>
               <div className='flex-shrink-0'></div>
               <div className='hidden md:block'>
-                <div className='ml-40 flex items-baseline space-x-4'>
-                  <a
-                    href='#'
-                    className='transition-all	hover:bg-gray-700 text-white px-3 py-2 rounded-md text-mid font-medium ml-10'
+                <div className='links flex items-baseline space-x-4'>
+                  <Link
+                    to='/income-expanses'
+                    className='hovering text-white px-3 py-2 rounded-md text-mid font-medium ml-10'
                   >
                     Create an Expnase / Income
-                  </a>
-
-                  <a
-                    href='#'
-                    className=' transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
+                  </Link>
+                  <Link
+                    to='/history'
+                    className='hovering ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     History
-                  </a>
+                  </Link>
 
-                  <a
-                    href='#'
-                    className=' transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
+                  <Link
+                    to='/reports'
+                    className='hovering	ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     Reports
-                  </a>
+                  </Link>
 
-                  <a
-                    href='#'
-                    className='transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
+                  <Link
+                    to='/about'
+                    className='hovering	ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     About Us
-                  </a>
+                  </Link>
 
-                  <a
-                    href='#'
-                    className='transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
+                  <Link
+                    to='/contact'
+                    className='hovering	ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     Contact Us
-                  </a>
-                  <a
-                    href='#'
-                    className='transition-all	ml-10 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-mid font-medium'
+                  </Link>
+                  <Link
+                    to='/login'
+                    className='hovering ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
                   >
                     Log In
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
