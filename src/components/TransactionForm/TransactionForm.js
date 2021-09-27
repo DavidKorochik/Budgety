@@ -59,13 +59,13 @@ export default function TransactionForm() {
           <div className='flex justify-center mt-10'>
             <label
               htmlFor='description'
-              className='text-3xl font-medium ml-48 text-white'
+              className='text-3xl font-medium ml-20 text-white'
             >
               Description
             </label>
             <input
               onChange={(e) => setDescription(e.target.value)}
-              className='inputForm text-xl placeholder-white w-1/3 ml-5 text-white outline-none border-0 transition-all focus:border-blue-500 bg-transparent border-b text-center '
+              className='inputForm text-xl placeholder-white w-1/4 ml-5 text-white outline-none border-0 transition-all focus:border-blue-500 bg-transparent border-b text-center '
               placeholder='Add your transaction description ...'
               type='text'
               required
@@ -76,7 +76,7 @@ export default function TransactionForm() {
           <div className='flex justify-center mt-10'>
             <label
               htmlFor='amount'
-              className='text-3xl font-medium ml-8 text-white'
+              className='text-3xl font-medium ml-10 text-white'
             >
               Amount
             </label>
