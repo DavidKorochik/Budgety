@@ -11,7 +11,11 @@ import {
   CLEAR_MESSAGE,
 } from '../types';
 
-const initialState = { transactions: [], current: null, message: [] };
+const initialState = {
+  transactions: [],
+  current: null,
+  message: [],
+};
 
 export const TransactionsContext = createContext(initialState);
 

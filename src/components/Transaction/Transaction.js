@@ -5,15 +5,8 @@ export default function Transaction({ amount, description, date, id }) {
   const { deleteTransaction, updateTransaction } =
     useContext(TransactionsContext);
 
-  const nf = new Intl.NumberFormat();
-
   const formatNumber = (num) => {
-    let p = num.toString().split('.');
-    if (p[0] > 999) {
-      return nf.format(num);
-    } else {
-      return num;
-    }
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   };
 
   return (
@@ -33,7 +26,8 @@ export default function Transaction({ amount, description, date, id }) {
             {description}
           </td>
           <td className='px-4 py-3 text-xl text-blue-500 border font-semibold text-center'>
-            {amount}
+            {formatNumber(amount.toFixed(3))}
+            <span className='ml-1'>&#8362;</span>
           </td>
         </tr>
       </tbody>
