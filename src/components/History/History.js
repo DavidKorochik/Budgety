@@ -9,11 +9,11 @@ export default function History() {
     <Fragment>
       {transactions.length === 0 ? (
         <Fragment>
-          <div className='flex justify-center text-white text-5xl mt-12 mb-6'>
+          <div className='flex justify-center text-white font-bold text-6xl mt-20 mb-6'>
             History Of{' '}
             <span className='text-blue-500 font-bold ml-2'>Transactions</span>
           </div>
-          <div className='flex justify-center text-blue-500 text-7xl text-4xl mt-44 mb-6'>
+          <div className='flex justify-center text-blue-500 font-bold text-7xl text-4xl mt-44 mb-6'>
             No Transactions!
           </div>
         </Fragment>

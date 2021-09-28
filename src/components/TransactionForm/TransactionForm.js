@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 import './TransactionForm.css';
-import NumberFormat from 'react-number-format';
+// import NumberFormat from 'react-number-format';
+// import Cleave from 'cleave.js/react';
 
 export default function TransactionForm() {
   const { setMessage, addTransaction, message } =
@@ -38,9 +39,14 @@ export default function TransactionForm() {
   return (
     <>
       <div>
-        <h1 className='title text-white font-bold text-6xl flex justify-center mt-20'>
-          Add New <span className='text-blue-500 ml-3'>Transaction</span>
-        </h1>
+        {message.length !== 0 ? (
+          <h1></h1>
+        ) : (
+          <h1 className='title text-white font-bold text-6xl flex justify-center mt-20'>
+            Add New <span className='text-blue-500 ml-3'>Transaction</span>
+          </h1>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className='flex justify-center mt-20'>
             <label htmlFor='date' className='text-3xl font-medium text-white'>
@@ -48,7 +54,7 @@ export default function TransactionForm() {
             </label>
             <input
               onChange={(e) => setDate(e.target.value)}
-              className='inputForm text-xl placeholder-white w-1/4 text-center ml-5 outline-none transition-all focus:border-blue-500 border-0 text-white bg-transparent border-b '
+              className='inputForm text-xl placeholder-white w-1/4 text-center ml-5 outline-none transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b '
               placeholder='Add the date of the transaction ...'
               type='date'
               required
@@ -65,7 +71,7 @@ export default function TransactionForm() {
             </label>
             <input
               onChange={(e) => setDescription(e.target.value)}
-              className='inputForm text-xl placeholder-white w-1/4 ml-5 text-white outline-none border-0 transition-all focus:border-blue-500 bg-transparent border-b text-center '
+              className='inputForm text-xl placeholder-blue-500 w-1/4 ml-5 text-blue-500 outline-none border-0 transition-all focus:border-blue-500 bg-transparent border-b text-center '
               placeholder='Add your transaction description ...'
               type='text'
               required
@@ -80,7 +86,7 @@ export default function TransactionForm() {
             >
               Amount
             </label>
-            <NumberFormat
+            {/* <NumberFormat
               className='inputForm text-xl placeholder-white w-1/4 text-center ml-5 outline-none  transition-all focus:border-blue-500 border-0 text-white bg-transparent border-b '
               placeholder='Add your transaction amount ...'
               type='text'
@@ -90,7 +96,26 @@ export default function TransactionForm() {
               id='formattedNumberField'
               thousandSeparator={true}
               onChange={(e) => setAmount(e.target.value)}
+              // prefix={'₪'}
+            /> */}
+            {/* <Cleave
+              className='inputForm text-xl placeholder-white w-1/4 text-center ml-5 outline-none  transition-all focus:border-blue-500 border-0 text-white bg-transparent border-b '
+              placeholder='Add your transaction amount ...'
+              options={{ numeral: true, numeralThousandsGroupStyle: true }}
+              value={amount}
+              required
+              type='text'
+              onChange={(e) => setAmount(e.target.value)}
               prefix={'₪'}
+            /> */}
+            <input
+              className='inputForm text-xl placeholder-blue-500 w-1/4 text-center ml-5 outline-none  transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b '
+              placeholder='Add your transaction amount ...'
+              type='text'
+              required
+              value={amount}
+              id='formattedInput'
+              onChange={(e) => setAmount(e.target.value)}
             />
           </div>
           <div className='flex justify-center mt-16 text-blue-500 text-xl'>

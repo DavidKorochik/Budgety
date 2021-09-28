@@ -36,6 +36,10 @@ export default function Balance() {
           balance > 999 && balance < 10000 ? 'mr-32' : ''
         } ${balance > 9999 && balance < 100000 ? 'mr-28' : ''} ${
           balance > 99999 ? 'mr-24' : ''
+        } ${balance < 0 && balance > -99 ? 'mr-44' : ''} ${
+          balance < -99 && balance > -999 ? 'mr-40' : ''
+        } ${balance < -999 && balance > -9999 ? 'mr-36' : ''} ${
+          balance < -9999 && balance > -99999 ? 'mr-32' : ''
         } flex justify-end mt-8  text-blue-500 text-7xl`}
       >
         <h1>
