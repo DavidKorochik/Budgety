@@ -2,12 +2,34 @@ import React, { useContext, Fragment } from 'react';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 import Transaction from '../Transaction/Transaction';
 import TransactionFilter from '../TransactionFilter/TransactionFilter';
+import './History.css';
 
 export default function History() {
   const { transactions, filter } = useContext(TransactionsContext);
 
+  const formatNumber = (num) => {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  };
+
+  const total = transactions.map((t) => Number(t.amount));
+
+  const balance = total.reduce((acc, val) => (acc += val), 0);
+
   return (
     <Fragment>
+      {balance === 0 ? (
+        ''
+      ) : (
+        <div
+          className={`text-6xl absolute top-36 ml-10 ${
+            balance < 0 ? 'color' : 'text-blue-500 '
+          }`}
+        >
+          <span className='font-extrabold'>Balance</span>{' '}
+          {formatNumber(balance.toFixed(3))} <span>&#8362;</span>
+        </div>
+      )}
+
       {transactions.length === 0 ? (
         <Fragment>
           <div className='flex justify-center text-white font-bold text-6xl mt-20 mb-6'>

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar() {
+  const location = useLocation();
+
   return (
     <div className='sticky top-0'>
       <nav className='bg-gray-800'>
@@ -19,48 +21,62 @@ export default function Navbar() {
               <div className='hidden md:block'>
                 <div className='links flex items-baseline space-x-2 '>
                   <Link
-                    to='/income-expanses'
-                    className='hovering text-white px-3 py-2 rounded-md text-mid font-medium ml-30'
+                    to='/create'
+                    className={`${
+                      location.pathname === '/create' ? 'text-blue-500' : ''
+                    } hovering text-white px-3 py-2 rounded-md text-mid font-medium ml-30`}
                   >
                     Create an Expnase / Income
                   </Link>
 
                   <Link
                     to='/history'
-                    className='hovering ml-20 text-white px-3 py-2 rounded-md text-mid font-medium'
+                    className={`${
+                      location.pathname === '/history' ? 'text-blue-500' : ''
+                    } hovering ml-20 text-white px-3 py-2 rounded-md text-mid font-medium`}
                   >
                     History
                   </Link>
 
                   <Link
                     to='/reports'
-                    className='hovering	ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
+                    className={`${
+                      location.pathname === '/reports' ? 'text-blue-500' : ''
+                    } hovering ml-10 text-white px-3 py-2 rounded-md text-mid font-medium`}
                   >
                     Reports
                   </Link>
 
                   <Link
                     to='/about'
-                    className='hovering	ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
+                    className={`${
+                      location.pathname === '/about' ? 'text-blue-500' : ''
+                    } hovering	ml-10 text-white px-3 py-2 rounded-md text-mid font-medium`}
                   >
                     About Us
                   </Link>
 
                   <Link
                     to='/contact'
-                    className='hovering	ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
+                    className={`${
+                      location.pathname === '/contact' ? 'text-blue-500' : ''
+                    } hovering ml-10 text-white px-3 py-2 rounded-md text-mid font-medium`}
                   >
                     Contact Us
                   </Link>
                   <Link
                     to='/login'
-                    className='hovering ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
+                    className={`${
+                      location.pathname === '/login' ? 'text-blue-500' : ''
+                    } hovering ml-10 text-white px-3 py-2 rounded-md text-mid font-medium`}
                   >
                     Log In
                   </Link>
                   <Link
                     to='/register'
-                    className='hovering ml-10 text-white px-3 py-2 rounded-md text-mid font-medium'
+                    className={`${
+                      location.pathname === '/register' ? 'text-blue-500' : ''
+                    } hovering ml-10 text-white px-3 py-2 rounded-md text-mid font-medium`}
                   >
                     Register
                   </Link>

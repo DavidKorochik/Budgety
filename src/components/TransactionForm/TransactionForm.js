@@ -3,10 +3,11 @@ import { TransactionsContext } from '../../store/transactions/TransactionsState'
 import './TransactionForm.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useHistory } from 'react-router';
+import NumberFormat from 'react-number-format';
 
 export default function TransactionForm() {
   const {
-    setMessage,
+    // setMessage,
     addTransaction,
     message,
     updateTransaction,
@@ -15,10 +16,6 @@ export default function TransactionForm() {
   } = useContext(TransactionsContext);
 
   let history = useHistory();
-
-  // const [description, setDescription] = useState('');
-  // const [amount, setAmount] = useState('');
-  // const [date, setDate] = useState('');
 
   const [transaction, setTransaction] = useState({
     date: '',
@@ -37,7 +34,7 @@ export default function TransactionForm() {
 
     const letters = /^[A-Za-z]+$/;
 
-    if (!amount.toString().match(letters) && typeof amount !== NaN) {
+    if (!amount.toString().match(letters) && !isNaN(amount)) {
       if (current === null) {
         addTransaction({
           ...transaction,
@@ -53,7 +50,6 @@ export default function TransactionForm() {
     }
 
     clearCurrent();
-
     history.push('/history');
 
     // setMessage({
@@ -72,6 +68,8 @@ export default function TransactionForm() {
     } else {
       setTransaction({ date: '', description: '', amount: '' });
     }
+
+    // eslint-disable-next-line
   }, [current, TransactionsContext]);
 
   return (
@@ -128,16 +126,20 @@ export default function TransactionForm() {
             >
               Amount
             </label>
-            <input
+            <NumberFormat
               className='inputForm text-xl placeholder-blue-500 w-1/4 text-center ml-5 outline-none  transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b '
               placeholder='Add your transaction amount ...'
-              type='text'
-              name='amount'
-              required
+              thousandSeparator={true}
               value={amount}
-              id='formattedInput'
-              onChange={handleChange}
               autoComplete='off'
+              required
+              prefix={'₪'}
+              onValueChange={(e) =>
+                setTransaction({
+                  ...transaction,
+                  amount: Number(e.value),
+                })
+              }
             />
           </div>
           {current !== null ? (

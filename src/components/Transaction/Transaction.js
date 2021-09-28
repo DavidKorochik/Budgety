@@ -15,13 +15,13 @@ export default function Transaction({ transaction }) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   };
 
-  const newDate = date.replace(/\-/g, '/').split('/');
+  const newDate = date.replace(/-/g, '/').split('/');
 
   const updatedDate = `${newDate[2]}/${newDate[1]}/${newDate[0]}`;
 
   const handleEdit = () => {
     setCurrent(transaction);
-    history.push('/income-expanses');
+    history.push('/create');
   };
 
   const handleDelete = () => {

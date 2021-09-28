@@ -10,7 +10,7 @@ import {
   CLEAR_FILTER,
 } from '../types';
 
-export default (state, action) => {
+export default function TransactionReducer(state, action) {
   switch (action.type) {
     case ADD_TRANSACTION:
       return {
@@ -61,5 +61,9 @@ export default (state, action) => {
         ...state,
         filter: null,
       };
+    default:
+      return {
+        ...state,
+      };
   }
-};
+}

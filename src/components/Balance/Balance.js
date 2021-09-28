@@ -33,7 +33,7 @@ export default function Balance() {
             balance < 0 ? 'expanse' : ''
           }`}
         >
-          <h4 className='mr-1 font-bold'>Your Balance</h4>
+          <h4 className='mr-1 font-bold mt-10'>Your Balance</h4>
         </div>
         <div
           className={`${balance === 0 ? 'mr-52' : ''} ${

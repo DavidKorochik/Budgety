@@ -1,19 +1,19 @@
 import React, { Fragment, useContext } from 'react';
-import { Doughnut, Line, Pie } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 
 export default function Charts() {
   const { transactions } = useContext(TransactionsContext);
 
-  const getMonthName = (month) => {
-    const d = new Date();
-    d.setMonth(month - 1);
-    const monthName = d.toLocaleString('default', { month: 'long' });
-    return monthName;
-  };
+  // const getMonthName = (month) => {
+  //   const d = new Date();
+  //   d.setMonth(month - 1);
+  //   const monthName = d.toLocaleString('default', { month: 'long' });
+  //   return monthName;
+  // };
 
   const amounts = transactions.map((t) => Number(t.amount));
-  const dates = transactions.map((t) => getMonthName(t.date.split('-')[1]));
+  // const dates = transactions.map((t) => getMonthName(t.date.split('-')[1]));
 
   let incomes = 0;
   let expanses = 0;
@@ -43,7 +43,7 @@ export default function Charts() {
       {incomes === 0 && expanses === 0 ? (
         <h1 className='text-blue-500 text-4xl'>
           You need Expnases or Incomes for{' '}
-          <span className='font-extrabold'>"Expanses VS Incomes" chart</span>!
+          <span className='font-extrabold'>"Expanses VS Incomes" Chart</span>!
         </h1>
       ) : (
         <Fragment>
