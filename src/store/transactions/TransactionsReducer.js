@@ -6,6 +6,8 @@ import {
   CLEAR_CURRENT,
   SET_MESSAGE,
   CLEAR_MESSAGE,
+  FILTER_TRANSACTIONS,
+  CLEAR_FILTER,
 } from '../types';
 
 export default (state, action) => {
@@ -46,6 +48,18 @@ export default (state, action) => {
       return {
         ...state,
         message: state.message.filter((m) => m.id !== action.payload),
+      };
+    case FILTER_TRANSACTIONS:
+      return {
+        ...state,
+        filter: state.transactions.filter((t) =>
+          t.description.toLowerCase().includes(action.payload.toLowerCase())
+        ),
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filter: null,
       };
   }
 };

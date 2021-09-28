@@ -13,3 +13,11 @@ input:checked ~ .dot {
   border-bottom: 4px solid rgba(59, 130, 246);
   margin-top: 2px;
 }
+
+.color {
+  color: #7a2048;
+}
+
+.change:hover {
+  color: #7a2048;
+}

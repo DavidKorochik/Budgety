@@ -9,10 +9,13 @@ import {
   CLEAR_CURRENT,
   SET_MESSAGE,
   CLEAR_MESSAGE,
+  FILTER_TRANSACTIONS,
+  CLEAR_FILTER,
 } from '../types';
 
 const initialState = {
   transactions: [],
+  filter: null,
   current: null,
   message: [],
 };
@@ -52,18 +55,29 @@ export const TransactionsProvider = ({ children }) => {
     }, 5000);
   };
 
+  const filteredTransactions = (text) => {
+    dispatch({ type: FILTER_TRANSACTIONS, payload: text });
+  };
+
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
+
   return (
     <TransactionsContext.Provider
       value={{
         transactions: state.transactions,
         message: state.message,
         current: state.current,
+        filter: state.filter,
         addTransaction,
         deleteTransaction,
         updateTransaction,
         setCurrent,
         clearCurrent,
         setMessage,
+        filteredTransactions,
+        clearFilter,
       }}
     >
       {children}

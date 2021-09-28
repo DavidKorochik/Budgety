@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Doughnut, Line, Pie } from 'react-chartjs-2';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 
@@ -26,63 +26,50 @@ export default function Charts() {
     }
   });
 
-  // const state = {
-  //   labels: [...dates],
-  //   datasets: [
-  //     {
-  //       backgroundColor: [
-  //         '#B21F00',
-  //         '#C9DE00',
-  //         '#2FDE00',
-  //         '#00A6B4',
-  //         '#6800B4',
-  //         '#F7DC6F',
-  //         '#D35400',
-  //         '#212F3C',
-  //         '#F0B27A',
-  //         '#F1948A',
-  //         '#7E5109',
-  //         '#F5B7B1',
-  //       ],
-  //       hoverBackgroundColor: [
-  //         '#501800',
-  //         '#4B5000',
-  //         '#175000',
-  //         '#003350',
-  //         '#35014F',
-  //       ],
-  //       data: [...amounts],
-  //     },
-  //   ],
-  // };
-
   const state = {
     labels: ['Incomes', 'Expanses'],
     datasets: [
       {
-        backgroundColor: ['#2ECC71', '#B21F00'],
-        hoverBackgroundColor: ['#1D8348', '#501800'],
+        backgroundColor: ['rgba(59, 130, 246)', '#7a2048'],
+        hoverBackgroundColor: ['#154360', '#4A235A'],
         data: [incomes, expanses],
-        fontSize: 30,
+        fontSize: 25,
       },
     ],
   };
 
   return (
-    <div className='flex justify-center ml-20 mt-16 items-center w-1/3'>
+    <div className='flex justify-center ml-40 mt-16 items-center w-1/4'>
       {incomes === 0 && expanses === 0 ? (
         <h1 className='text-blue-500 text-4xl'>
-          You need Expnases or Incomes for <br />
+          You need Expnases or Incomes for{' '}
           <span className='font-extrabold'>"Expanses VS Incomes" chart</span>!
         </h1>
       ) : (
-        <Pie
-          data={state}
-          options={{
-            title: { text: 'Transactions By Month', fontSize: 30 },
-            legend: { display: true },
-          }}
-        />
+        <Fragment>
+          <Pie
+            data={state}
+            options={{
+              plugins: {
+                title: {
+                  display: true,
+                  color: 'white',
+                  font: { weight: 'bold', size: 24 },
+                  text: 'Expanses VS Incomes Chart',
+                },
+                legend: {
+                  labels: {
+                    font: {
+                      size: 14,
+                    },
+                    color: 'white',
+                    padding: 12,
+                  },
+                },
+              },
+            }}
+          />
+        </Fragment>
       )}
     </div>
   );
