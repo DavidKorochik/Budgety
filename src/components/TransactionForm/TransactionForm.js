@@ -7,9 +7,8 @@ import NumberFormat from 'react-number-format';
 
 export default function TransactionForm() {
   const {
-    // setMessage,
     addTransaction,
-    message,
+    setMessage,
     updateTransaction,
     current,
     clearCurrent,
@@ -52,10 +51,7 @@ export default function TransactionForm() {
     clearCurrent();
     history.push('/history');
 
-    // setMessage({
-    //   id: uuidv4(),
-    //   message: 'You have submitted a new transaction!',
-    // });
+    setMessage('Transaction added successfully', 'bg-green-700');
   };
 
   const handleClear = () => {
@@ -75,17 +71,10 @@ export default function TransactionForm() {
   return (
     <>
       <div>
-        {message.length !== 0 && current === null ? (
-          <h1 className='title text-blue-500 font-bold text-6xl flex justify-center mt-20'>
-            You Have Added A New Transaction!
-          </h1>
-        ) : (
-          <h1 className='title text-white font-bold text-6xl flex justify-center mt-20'>
-            Add New <span className='text-blue-500 ml-3'>Transaction</span>
-          </h1>
-        )}
-
-        <form onSubmit={handleSubmit}>
+        <h1 className='title text-white font-bold text-6xl flex justify-center mt-20'>
+          Add New <span className='text-blue-500 ml-3'>Transaction</span>
+        </h1>
+        <form onSubmit={handleSubmit} method='POST'>
           <div className='flex justify-center mt-20'>
             <label htmlFor='date' className='text-3xl font-medium text-white'>
               Date

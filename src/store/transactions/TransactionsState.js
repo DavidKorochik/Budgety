@@ -45,10 +45,10 @@ export const TransactionsProvider = ({ children }) => {
     dispatch({ type: CLEAR_CURRENT });
   };
 
-  const setMessage = (message) => {
+  const setMessage = (message, type) => {
     const id = uuidv4();
 
-    dispatch({ type: SET_MESSAGE, payload: { id, message } });
+    dispatch({ type: SET_MESSAGE, payload: { message, type, id } });
 
     setTimeout(() => {
       dispatch({ type: CLEAR_MESSAGE, payload: id });

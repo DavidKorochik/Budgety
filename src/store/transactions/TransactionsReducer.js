@@ -62,8 +62,6 @@ export default function TransactionReducer(state, action) {
         filter: null,
       };
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 }
