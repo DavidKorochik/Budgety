@@ -43,6 +43,7 @@ export default function TransactionForm() {
         setTransaction({ date: '', description: '', amount: '' });
       } else {
         updateTransaction({ ...transaction, amount: Number(amount) });
+        setMessage('Updated transaction', 'bg-green-700');
       }
     } else {
       return;
@@ -51,7 +52,9 @@ export default function TransactionForm() {
     clearCurrent();
     history.push('/history');
 
-    setMessage('Transaction added successfully', 'bg-green-700');
+    if (document.querySelector('.change').textContent === 'Submit') {
+      setMessage('Transaction added successfully', 'bg-green-700');
+    }
   };
 
   const handleClear = () => {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 
 export default function Register() {
-  const { setMessage, message } = useContext(TransactionsContext);
+  const { setMessage } = useContext(TransactionsContext);
 
   const [user, setUser] = useState({
     email: '',
