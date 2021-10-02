@@ -6,11 +6,14 @@ const app = express();
 
 app.use(express.json());
 
+app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
+
 app.listen(process.env.PORT, async () => {
   try {
     await db();
     console.log(`Server is running on port ${process.env.PORT}`);
   } catch (err) {
-    console.error('Connection error');
+    console.error('Cannot conenct to database');
   }
 });

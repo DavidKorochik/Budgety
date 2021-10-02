@@ -19,4 +19,4 @@ const transactionsSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Transactions', transactionsSchema);
+module.exports = mongoose.model('Transaction', transactionsSchema);
