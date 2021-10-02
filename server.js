@@ -8,6 +8,7 @@ app.use(express.json());
 
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/transactions', require('./routes/transactionRoutes'));
 
 app.listen(process.env.PORT, async () => {
   try {
