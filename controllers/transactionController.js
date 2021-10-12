@@ -50,20 +50,20 @@ const updateTransaction = async (req, res) => {
 
   if (date) obj.date = date;
   if (description) obj.description = description;
-  if (amount) obj.amouont = amount;
+  if (amount) obj.amount = amount;
 
   try {
-    const transaction = await Transaction.findById(id);
+    let transactionToUpdate = await Transaction.findById(id);
 
-    if (!transaction) {
+    if (!transactionToUpdate) {
       return res.status(404).json({ error: 'No transaction was found' });
     }
 
-    if (transaction.user !== req.user.id) {
+    if (transactionToUpdate.user.toString() !== req.user.id) {
       return res.status(401).json({ error: 'Not authorized' });
     }
 
-    const updatedTransaction = await Transaction.findByIdAndUpdate(
+    transactionToUpdate = await Transaction.findByIdAndUpdate(
       id,
       {
         $set: obj,
@@ -71,9 +71,7 @@ const updateTransaction = async (req, res) => {
       { new: true }
     );
 
-    await updatedTransaction.save();
-
-    res.json(updatedTransaction);
+    res.json(transactionToUpdate);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -89,7 +87,7 @@ const deleteTransaction = async (req, res) => {
       return res.status(404).json({ error: 'No transaction was found' });
     }
 
-    if (transactionToDelete.user !== req.user.id) {
+    if (transactionToDelete.user.toString() !== req.user.id) {
       return res.status(401).json({ error: 'Not authorized' });
     }
 

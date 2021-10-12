@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
+const sendEmail = require('../helpers/sendEmail');
 require('dotenv').config();
 
 // Register user
@@ -11,7 +12,7 @@ const registerUser = async (req, res) => {
     return res.status(400).json({ error: errors.array()[0].msg });
   }
 
-  const { name, email, password, password2 } = req.body;
+  const { fullName, email, password, password2 } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -20,7 +21,7 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ error: 'User already exists' });
     }
 
-    user = new User({ name, email, password });
+    user = new User({ fullName, email, password });
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
@@ -46,6 +47,8 @@ const registerUser = async (req, res) => {
         res.json({ token });
       }
     );
+
+    sendEmail(user);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
