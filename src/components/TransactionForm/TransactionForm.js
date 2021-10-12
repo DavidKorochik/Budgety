@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 import './TransactionForm.css';
-import { v4 as uuidv4 } from 'uuid';
 import { useHistory } from 'react-router';
 import NumberFormat from 'react-number-format';
+import Spinner from '../../utils/Spinner';
 
 export default function TransactionForm() {
   const {
@@ -22,46 +22,46 @@ export default function TransactionForm() {
     amount: '',
   });
 
+  const [updateLoader, setUpdateLoader] = useState(null);
+
   const { date, description, amount } = transaction;
 
   const handleChange = (e) => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const letters = /^[A-Za-z]+$/;
+    if (current === null) {
+      await addTransaction({
+        ...transaction,
+        amount: Number(amount),
+      });
 
-    if (!amount.toString().match(letters) && !isNaN(amount)) {
-      if (current === null) {
-        addTransaction({
-          ...transaction,
-          id: uuidv4(),
-          amount: Number(amount),
-        });
-        setTransaction({ date: '', description: '', amount: '' });
-      } else {
-        updateTransaction({ ...transaction, amount: Number(amount) });
-        setMessage('Updated transaction', 'bg-green-700');
-      }
-    } else {
-      return;
-    }
-
-    clearCurrent();
-    history.push('/history');
-
-    if (document.querySelector('.change').textContent === 'Submit') {
+      setTransaction({ date: '', description: '', amount: '' });
       setMessage('Transaction added successfully', 'bg-green-700');
+    } else {
+      await updateTransaction({ ...transaction, amount: Number(amount) });
+      setMessage('Updated transaction successfully', 'bg-green-700');
+
+      setUpdateLoader(true);
+
+      setTimeout(() => {
+        setUpdateLoader(false);
+      }, 3000);
+
+      clearCurrent();
     }
+
+    history.push('/history');
   };
 
   const handleClear = () => {
     clearCurrent();
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (current !== null) {
       setTransaction(current);
     } else {
@@ -72,108 +72,117 @@ export default function TransactionForm() {
   }, [current, TransactionsContext]);
 
   return (
-    <>
-      <div>
-        <h1 className='title text-white font-bold text-6xl flex justify-center mt-20'>
-          Add New <span className='text-blue-500 ml-3'>Transaction</span>
-        </h1>
-        <form onSubmit={handleSubmit} method='POST'>
-          <div className='flex justify-center mt-20'>
-            <label htmlFor='date' className='text-3xl font-medium text-white'>
-              Date
-            </label>
-            <input
-              onChange={handleChange}
-              className='inputForm text-xl placeholder-white w-1/4 text-center ml-5 outline-none transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b '
-              placeholder='Add the date of the transaction ...'
-              type='date'
-              name='date'
-              required
-              value={date}
-              autoComplete='off'
-            />
-          </div>
-          <div className='flex justify-center mt-10'>
-            <label
-              htmlFor='description'
-              className='text-3xl font-medium ml-20 text-white'
-            >
-              Description
-            </label>
-            <input
-              onChange={handleChange}
-              className='inputForm text-xl placeholder-blue-500 w-1/4 ml-5 text-blue-500 outline-none border-0 transition-all focus:border-blue-500 bg-transparent border-b text-center '
-              placeholder='Add your transaction description ...'
-              type='text'
-              name='description'
-              required
-              value={description}
-              autoComplete='off'
-            />
-          </div>
-          <div className='flex justify-center mt-10'>
-            <label
-              htmlFor='amount'
-              className='text-3xl font-medium ml-10 text-white'
-            >
-              Amount
-            </label>
-            <NumberFormat
-              className='inputForm text-xl placeholder-blue-500 w-1/4 text-center ml-5 outline-none  transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b '
-              placeholder='Add your transaction amount ...'
-              thousandSeparator={true}
-              value={amount}
-              autoComplete='off'
-              required
-              prefix={'₪'}
-              onValueChange={(e) =>
-                setTransaction({
-                  ...transaction,
-                  amount: Number(e.value),
-                })
-              }
-            />
-          </div>
-          {current !== null ? (
-            <div className='flex justify-center align-center'>
-              <button
-                className="'change text-white transition-all hover:rounded-xl hover:border-blue-500 border-b-2 w-20 h-12 mt-4 text-xl"
-                onClick={handleClear}
+    <Fragment>
+      {updateLoader ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <div>
+            <h1 className='title text-white font-bold text-6xl flex justify-center mt-20'>
+              Add New <span className='text-blue-500 ml-3'>Transaction</span>
+            </h1>
+            <form onSubmit={handleSubmit}>
+              <div className='flex justify-center mt-20'>
+                <label
+                  htmlFor='date'
+                  className='text-3xl font-medium text-white'
+                >
+                  Date
+                </label>
+                <input
+                  onChange={handleChange}
+                  className='inputForm text-xl placeholder-white w-1/4 text-center ml-5 outline-none transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b '
+                  placeholder='Add the date of the transaction ...'
+                  type='date'
+                  name='date'
+                  required
+                  value={date}
+                  autoComplete='off'
+                />
+              </div>
+              <div className='flex justify-center mt-10'>
+                <label
+                  htmlFor='description'
+                  className='text-3xl font-medium ml-20 text-white'
+                >
+                  Description
+                </label>
+                <input
+                  onChange={handleChange}
+                  className='inputForm text-xl placeholder-blue-500 w-1/4 ml-5 text-blue-500 outline-none border-0 transition-all focus:border-blue-500 bg-transparent border-b text-center '
+                  placeholder='Add your transaction description ...'
+                  type='text'
+                  name='description'
+                  required
+                  value={description}
+                  autoComplete='off'
+                />
+              </div>
+              <div className='flex justify-center mt-10'>
+                <label
+                  htmlFor='amount'
+                  className='text-3xl font-medium ml-10 text-white'
+                >
+                  Amount
+                </label>
+                <NumberFormat
+                  className='inputForm text-xl placeholder-blue-500 w-1/4 text-center ml-5 outline-none  transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b '
+                  placeholder='Add your transaction amount ...'
+                  thousandSeparator={true}
+                  value={amount}
+                  autoComplete='off'
+                  required
+                  prefix={'₪'}
+                  onValueChange={(e) =>
+                    setTransaction({
+                      ...transaction,
+                      amount: Number(e.value),
+                    })
+                  }
+                />
+              </div>
+              {current !== null ? (
+                <div className='flex justify-center align-center'>
+                  <button
+                    className='change text-white transition-all hover:rounded-xl hover:border-blue-500 border-b-2 w-20 h-12 mt-4 text-xl'
+                    onClick={handleClear}
+                  >
+                    Clear
+                  </button>
+                </div>
+              ) : (
+                ''
+              )}
+              <div
+                className={`flex justify-center ${
+                  current !== null ? 'mt-10' : 'mt-16'
+                } text-blue-500 text-xl`}
               >
-                Clear
-              </button>
-            </div>
-          ) : (
-            ''
-          )}
-          <div
-            className={`flex justify-center ${
-              current !== null ? 'mt-10' : 'mt-16'
-            } text-blue-500 text-xl`}
-          >
-            <h4>
-              <span className='font-extrabold text-2xl'>For Expanse</span> - use
-              the symbol (-)
-            </h4>
+                <h4>
+                  <span className='font-extrabold text-2xl'>For Expanse</span> -
+                  use the symbol (-)
+                </h4>
+              </div>
+              <div className=' flex justify-center mt-4 text-blue-500 text-xl'>
+                <h4>
+                  <span className='font-extrabold text-2xl'>For Income</span> -
+                  just write down the number
+                </h4>
+              </div>
+              <div className='flex justify-center align-center mt-8'>
+                <button
+                  type='submit'
+                  className={`change text-white transition-all hover:rounded-xl hover:border-blue-500 border-b-2 w-20 h-12 ${
+                    current !== null ? 'mt-2' : 'mt-8'
+                  } text-xl`}
+                >
+                  {current !== null ? 'Update' : 'Submit'}
+                </button>
+              </div>
+            </form>
           </div>
-          <div className=' flex justify-center mt-4 text-blue-500 text-xl'>
-            <h4>
-              <span className='font-extrabold text-2xl'>For Income</span> - just
-              write down the number
-            </h4>
-          </div>
-          <div className='flex justify-center align-center mt-8'>
-            <button
-              type='submit'
-              className={`change text-white transition-all hover:rounded-xl hover:border-blue-500 border-b-2 w-20 h-12 ${
-                current !== null ? 'mt-2' : 'mt-8'
-              } text-xl`}
-            >
-              {current !== null ? 'Update' : 'Submit'}
-            </button>
-          </div>
-        </form>
-      </div>
-    </>
+        </Fragment>
+      )}
+    </Fragment>
   );
 }

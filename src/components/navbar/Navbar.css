@@ -22,8 +22,3 @@
   width: 100%;
   left: 0;
 }
-
-.hovering:focus {
-  --tw-text-opacity: 1;
-  color: rgba(59, 130, 246, var(--tw-text-opacity));
-}

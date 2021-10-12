@@ -1,35 +1,46 @@
-import React, { Fragment, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
+import { AuthContext } from '../../store/auth/AuthState';
 
 export default function Register() {
   const { setMessage } = useContext(TransactionsContext);
+  const { registerUser, isAuthenticated, error } = useContext(AuthContext);
 
   const [user, setUser] = useState({
     fullName: '',
     email: '',
-    password1: '',
+    password: '',
     password2: '',
   });
 
-  const { fullName, email, password1, password2 } = user;
+  const { fullName, email, password, password2 } = user;
+
+  let history = useHistory();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/history');
+    }
+  }, [history, isAuthenticated]);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password1 !== password2) {
+
+    if (password !== password2) {
       setMessage('Password do not match!', 'bg-red-700');
-    } else if (
-      fullName === '' ||
-      email === '' ||
-      password1 === '' ||
-      password2 === ''
-    ) {
-      setMessage('Please enter all fields', 'bg-red-700');
+      window.location.reload();
+    } else if (error !== null && error !== undefined) {
+      setMessage(error, 'bg-red-700');
+      window.location.reload();
     }
+
+    await registerUser(user);
+    history.push('/history');
   };
 
   return (
@@ -41,7 +52,7 @@ export default function Register() {
               className='w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg'
               style={{
                 backgroundImage:
-                  "url('https://images.unsplash.com/photo-1585562125287-d748f3097a8f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80')",
+                  'url(https://images.unsplash.com/photo-1585562125287-d748f3097a8f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80)',
               }}
             ></div>
             <div className='lg:w-full bg-transparent p-5 rounded-lg lg:rounded-l-none'>
@@ -56,13 +67,13 @@ export default function Register() {
                   <div className='mb-4 md:mb-0'>
                     <label
                       className='block mb-2 text-lg font-bold text-blue-500'
-                      htmlFor='firstName'
+                      htmlFor='fullName'
                     >
                       Full Name
                     </label>
                     <input
                       className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 text-md leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-                      id='firstName'
+                      id='fullName'
                       type='text'
                       placeholder='Full Name'
                       required
@@ -94,18 +105,18 @@ export default function Register() {
                   <div className='mb-4 md:mb-0'>
                     <label
                       className='block mb-2 text-lg font-bold text-blue-500'
-                      htmlFor='password1'
+                      htmlFor='password'
                     >
                       Password
                     </label>
                     <input
                       className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-96 px-3 py-2 mb-3 text-md  leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-                      id='password1'
+                      id='password'
                       type='password'
                       placeholder='******************'
                       required
                       autoComplete='off'
-                      name='password1'
+                      name='password'
                       onChange={handleChange}
                     />
                   </div>
@@ -130,9 +141,8 @@ export default function Register() {
                 </div>
                 <div className='mb-6 text-center'>
                   <button
-                    onClick={handleSubmit}
                     className='w-full px-4 py-2 font-bold text-lg text-white bg-blue-500 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
-                    type='button'
+                    type='submit'
                   >
                     Register Account
                   </button>

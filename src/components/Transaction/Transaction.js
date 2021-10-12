@@ -4,10 +4,13 @@ import './Transaction.css';
 import { useHistory } from 'react-router';
 
 export default function Transaction({ transaction }) {
-  const { deleteTransaction, setCurrent, clearCurrent } =
+  const { deleteTransaction, setCurrent, clearCurrent, loading } =
     useContext(TransactionsContext);
 
-  const { date, description, amount, id } = transaction;
+  const { date, description, _id } = transaction;
+  let { amount } = transaction;
+
+  amount = Number(amount);
 
   let history = useHistory();
 
@@ -24,8 +27,8 @@ export default function Transaction({ transaction }) {
     history.push('/create');
   };
 
-  const handleDelete = () => {
-    deleteTransaction(id);
+  const handleDelete = async () => {
+    await deleteTransaction(_id);
     clearCurrent();
   };
 
@@ -63,7 +66,7 @@ export default function Transaction({ transaction }) {
           </td>
           <i
             onClick={handleEdit}
-            class='fa-solid fa-pen text-green-600 cursor-pointer mt-2 text-2xl mr-4'
+            className='fa-solid fa-pen text-green-600 cursor-pointer mt-2 text-2xl mr-4'
           ></i>
           <i
             onClick={handleDelete}
