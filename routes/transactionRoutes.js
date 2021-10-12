@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { check } = require('express-validator');
+const { body } = require('express-validator');
 const auth = require('../middleware/auth');
 const {
   createTransaction,
@@ -13,9 +13,9 @@ router.post(
   [
     auth,
     [
-      check('date', 'Date is rqeuired').not().isEmpty(),
-      check('description', 'Description is required').not().isEmpty(),
-      check('amount', 'Amount is required').not().isEmpty(),
+      body('date', 'Date is rqeuired').not().isEmpty(),
+      body('description', 'Description is required').not().isEmpty(),
+      body('amount', 'Amount is required').not().isEmpty(),
     ],
   ],
   createTransaction
@@ -23,7 +23,7 @@ router.post(
 
 router.get('/', auth, getAllTransactions);
 
-router.put('/:id', auth, updateTransaction);
+router.patch('/:id', auth, updateTransaction);
 
 router.delete('/:id', auth, deleteTransaction);
 

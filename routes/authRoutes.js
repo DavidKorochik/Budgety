@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { check } = require('express-validator');
+const { body } = require('express-validator');
 const { loginUser, getUser } = require('../controllers/authController');
 const auth = require('../middleware/auth');
 
@@ -10,8 +10,8 @@ router.get('/', auth, getUser);
 router.post(
   '/',
   [
-    check('email', 'Please enter a valid email address').isEmail(),
-    check('password', 'Please enter a password').not().isEmpty(),
+    body('email', 'Please include a valid email address').isEmail(),
+    body('password', 'Please enter a password').not().isEmpty(),
   ],
   loginUser
 );
