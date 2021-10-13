@@ -76,7 +76,7 @@ export default function Register() {
                         Email
                       </label>
                       <input
-                        className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 mb-3 text-md  leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                        className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 mb-3 text-md leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
                         id='email'
                         type='email'
                         name='email'
