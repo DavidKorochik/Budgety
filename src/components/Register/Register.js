@@ -66,13 +66,13 @@ export default function Register() {
                 <div className='mb-4'>
                   <div className='mb-4 md:mb-0'>
                     <label
-                      className='block mb-2 text-lg font-bold text-blue-500'
+                      className='ml-52 block mb-2 text-lg font-bold text-blue-500'
                       htmlFor='fullName'
                     >
                       Full Name
                     </label>
                     <input
-                      className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 text-md leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                      className='ml-52 focus:ring-2 bg-transparent focus:border-transparent border-blue-500 focus:ring-blue-500 transition-all placeholder-gray-500 w-1/2 px-3 py-2 text-md leading-tight text-white border-b-2 appearance-none focus:outline-none focus:shadow-outline'
                       id='fullName'
                       type='text'
                       placeholder='Full Name'
@@ -83,15 +83,15 @@ export default function Register() {
                     />
                   </div>
                 </div>
-                <div className='mb-4'>
+                <div className='mb-2'>
                   <label
-                    className='block mb-2 text-lg font-bold text-blue-500'
+                    className='ml-52 block mb-2 text-lg font-bold text-blue-500'
                     htmlFor='email'
                   >
                     Email
                   </label>
                   <input
-                    className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 mb-3 text-md  leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                    className='ml-52 focus:ring-2 bg-transparent focus:border-transparent border-blue-500 focus:ring-blue-500 transition-all placeholder-gray-500 w-1/2 px-3 py-2 mb-3 text-md leading-tight text-white border-b-2 appearance-none focus:outline-none focus:shadow-outline'
                     id='email'
                     type='email'
                     placeholder='Email'
@@ -101,16 +101,16 @@ export default function Register() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className='mb-4 md:flex md:justify-between'>
+                <div className='mb-4 '>
                   <div className='mb-4 md:mb-0'>
                     <label
-                      className='block mb-2 text-lg font-bold text-blue-500'
+                      className='ml-52 block mb-2 text-lg font-bold text-blue-500'
                       htmlFor='password'
                     >
                       Password
                     </label>
                     <input
-                      className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-96 px-3 py-2 mb-3 text-md  leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                      className='ml-52 focus:ring-2 focus:border-transparent border-blue-500 bg-transparent focus:ring-blue-500 transition-all placeholder-gray-500 w-1/2 px-3 py-2 mb-3 text-md leading-tight text-white border-b-2 appearance-none focus:outline-none focus:shadow-outline'
                       id='password'
                       type='password'
                       placeholder='******************'
@@ -120,28 +120,28 @@ export default function Register() {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className='md:ml-2'>
-                    <label
-                      className='block mb-2 text-lg font-bold text-blue-500'
-                      htmlFor='password2'
-                    >
-                      Confirm Password
-                    </label>
-                    <input
-                      className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-96 px-3 py-2 mb-3 text-md  leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-                      id='password2'
-                      type='password'
-                      placeholder='******************'
-                      required
-                      autoComplete='off'
-                      name='password2'
-                      onChange={handleChange}
-                    />
-                  </div>
+                </div>
+                <div className='mb-8'>
+                  <label
+                    className='ml-52 block mb-2 text-lg font-bold text-blue-500'
+                    htmlFor='password2'
+                  >
+                    Confirm Password
+                  </label>
+                  <input
+                    className='ml-52 bg-transparent focus:border-transparent border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all placeholder-gray-500 w-1/2 px-3 py-2 mb-3 text-md leading-tight text-white border-b-2 appearance-none focus:outline-none focus:shadow-outline'
+                    id='password2'
+                    type='password'
+                    placeholder='******************'
+                    required
+                    autoComplete='off'
+                    name='password2'
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className='mb-6 text-center'>
                   <button
-                    className='w-full px-4 py-2 font-bold text-lg text-white bg-blue-500 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+                    className='ml-8 w-1/2 px-4 py-2 font-bold text-lg text-white bg-blue-500 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
                     type='submit'
                   >
                     Register Account
