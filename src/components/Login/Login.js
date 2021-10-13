@@ -70,13 +70,13 @@ export default function Register() {
                   >
                     <div className='mb-4'>
                       <label
-                        className='block mb-2 text-lg font-bold text-blue-500'
+                        className='ml-52 block mb-2 text-lg font-bold text-blue-500'
                         htmlFor='email'
                       >
                         Email
                       </label>
                       <input
-                        className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 mb-3 text-md leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                        className='ml-52 focus:ring-2 bg-transparent focus:border-transparent border-blue-500 focus:ring-blue-500 transition-all placeholder-gray-500 w-1/2 px-3 py-2 text-md leading-tight text-white border-b-2 appearance-none focus:outline-none focus:shadow-outline'
                         id='email'
                         type='email'
                         name='email'
@@ -88,13 +88,13 @@ export default function Register() {
                     </div>
                     <div className='mb-4'>
                       <label
-                        className='block mb-2 text-lg font-bold text-blue-500'
+                        className='ml-52 block mb-2 text-lg font-bold text-blue-500'
                         htmlFor='password'
                       >
                         Password
                       </label>
                       <input
-                        className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 mb-3 text-md  leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                        className='ml-52 focus:ring-2 bg-transparent focus:border-transparent border-blue-500 focus:ring-blue-500 transition-all placeholder-gray-500 w-1/2 px-3 py-2 text-md leading-tight text-white border-b-2 appearance-none focus:outline-none focus:shadow-outline'
                         id='password'
                         type='password'
                         name='password'
@@ -106,7 +106,7 @@ export default function Register() {
                     </div>
                     <div className='mb-6 text-center'>
                       <button
-                        className='w-full px-4 py-2 font-bold text-white text-lg bg-blue-500 mt-16 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+                        className='ml-8 w-1/2 px-4 py-2 font-bold text-white text-lg bg-blue-500 mt-16 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
                         type='submit'
                       >
                         Login Account
@@ -149,13 +149,13 @@ export default function Register() {
                   >
                     <div className='mb-4'>
                       <label
-                        className='block mb-2 text-lg font-bold text-blue-500'
+                        className='ml-52 block mb-2 text-lg font-bold text-blue-500'
                         htmlFor='email'
                       >
                         Email
                       </label>
                       <input
-                        className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 mb-3 text-md  leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                        className='ml-52 focus:ring-2 bg-transparent focus:border-transparent	 border-blue-500 focus:ring-blue-500 transition-all placeholder-gray-500 w-1/2 px-3 py-2 text-md leading-tight text-white border-b-2 appearance-none focus:outline-none focus:shadow-outline'
                         id='email'
                         type='email'
                         name='email'
@@ -167,13 +167,13 @@ export default function Register() {
                     </div>
                     <div className='mb-4'>
                       <label
-                        className='block mb-2 text-lg font-bold text-blue-500'
+                        className='ml-52 block mb-2 text-lg font-bold text-blue-500'
                         htmlFor='password'
                       >
                         Password
                       </label>
                       <input
-                        className='focus:ring-4 focus:ring-blue-500 transition-all placeholder-gray-500 w-full px-3 py-2 mb-3 text-md  leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                        className='ml-52 focus:ring-2 bg-transparent focus:border-transparent border-blue-500 focus:ring-blue-500 transition-all placeholder-gray-500 w-1/2 px-3 py-2 text-md leading-tight text-white border-b-2 appearance-none focus:outline-none focus:shadow-outline'
                         id='password'
                         type='password'
                         name='password'
@@ -185,7 +185,7 @@ export default function Register() {
                     </div>
                     <div className='mb-6 text-center'>
                       <button
-                        className='w-full px-4 py-2 font-bold text-white text-lg bg-blue-500 mt-16 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+                        className='ml-8 w-1/2 px-4 py-2 font-bold text-white text-lg bg-blue-500 mt-16 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
                         type='submit'
                       >
                         Login Account
