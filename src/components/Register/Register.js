@@ -14,7 +14,7 @@ export default function Register() {
     password2: '',
   });
 
-  const { fullName, email, password, password2 } = user;
+  const { password, password2 } = user;
 
   let history = useHistory();
 
