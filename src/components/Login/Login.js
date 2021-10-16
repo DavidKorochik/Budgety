@@ -1,10 +1,9 @@
 import React, { Fragment, useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-// import { TransactionsContext } from '../../store/transactions/TransactionsState';
 import { AuthContext } from '../../store/auth/AuthState';
+import './Login.css';
 
 export default function Register() {
-  // const { setMessage } = useContext(TransactionsContext);
   const { loginUser, isAuthenticated, error } = useContext(AuthContext);
 
   const [user, setUser] = useState({
@@ -18,7 +17,7 @@ export default function Register() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push('/');
+      history.push('/history');
     }
   }, [history, isAuthenticated]);
 
@@ -106,7 +105,7 @@ export default function Register() {
                     </div>
                     <div className='mb-6 text-center'>
                       <button
-                        className='ml-8 w-1/2 px-4 py-2 font-bold text-white text-lg bg-blue-500 mt-16 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+                        className='ml-20 laptop-size w-1/2 px-4 py-2 font-bold text-white text-lg bg-blue-500 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
                         type='submit'
                       >
                         Login Account
@@ -185,7 +184,7 @@ export default function Register() {
                     </div>
                     <div className='mb-6 text-center'>
                       <button
-                        className='ml-8 w-1/2 px-4 py-2 font-bold text-white text-lg bg-blue-500 mt-16 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+                        className='ml-20 laptop-size w-1/2 px-4 py-2 font-bold text-white text-lg bg-blue-500 mt-8 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
                         type='submit'
                       >
                         Login Account

@@ -10,6 +10,8 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import TransactionForm from './components/TransactionForm/TransactionForm';
 import Message from './components/Messages/Message';
+import About from './components/About/About';
+import Contact from './components/Contact/Contact';
 import PrivateRoute from './utils/PrivateRoute';
 import { setAuthToken } from './utils/setAuthToken';
 import './App.css';
@@ -28,7 +30,6 @@ function App() {
               <Navbar />
               <Message />
               <Switch>
-                <PrivateRoute path='/' component={Home} exact />
                 <PrivateRoute path='/history' component={History} exact />
                 <PrivateRoute
                   path='/create'
@@ -36,8 +37,11 @@ function App() {
                   exact
                 />
                 <PrivateRoute path='/reports' component={Balance} exact />
+                <PrivateRoute path='/' component={Home} exact />
                 <Route path='/register' exact component={Register} />
                 <Route path='/login' exact component={Login} />
+                <Route path='/about' exact component={About} />
+                <Route path='/contact' exact component={Contact} />
               </Switch>
             </Router>
           </TransactionsProvider>

@@ -27,7 +27,7 @@ export default function Balance() {
 
   return (
     <Fragment>
-      <div className='mr-32'>
+      <div className='mr-32 desktop'>
         <div
           className={`flex justify-end mt-10 mr-52 text-blue-500 text-4xl ${
             balance < 0 ? 'expanse' : ''

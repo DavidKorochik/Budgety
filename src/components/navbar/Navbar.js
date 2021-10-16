@@ -93,7 +93,7 @@ export default function Navbar() {
                       location.pathname === '/create' ? 'text-blue-500' : ''
                     } hovering text-white px-3 py-2 rounded-md text-mid font-medium ml-30`}
                   >
-                    Create an Expnase / Income
+                    Add Transaction
                   </Link>
 
                   <Link
@@ -102,7 +102,7 @@ export default function Navbar() {
                       location.pathname === '/history' ? 'text-blue-500' : ''
                     } hovering ml-20 text-white px-3 py-2 rounded-md text-mid font-medium`}
                   >
-                    History
+                    Transactions
                   </Link>
 
                   <Link

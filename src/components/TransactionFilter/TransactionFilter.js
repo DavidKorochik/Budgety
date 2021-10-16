@@ -20,7 +20,7 @@ export default function TransactionFilter() {
           autoComplete='off'
           type='text'
           placeholder='Search &#61442;'
-          className='search font-sans text-xl absolute bottom-3/4 placeholder-blue-500 mr-36 w-1/6 text-center outline-none transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b  '
+          className='laptop-size search font-sans text-xl absolute bottom-3/4 placeholder-blue-500 mr-36 w-1/6 text-center outline-none transition-all focus:border-blue-500 border-0 text-blue-500 bg-transparent border-b  '
         />
       ) : (
         ''

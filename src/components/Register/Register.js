@@ -2,6 +2,7 @@ import React, { Fragment, useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 import { AuthContext } from '../../store/auth/AuthState';
+import './Register.css';
 
 export default function Register() {
   const { setMessage } = useContext(TransactionsContext);
@@ -141,7 +142,7 @@ export default function Register() {
                 </div>
                 <div className='mb-6 text-center'>
                   <button
-                    className='ml-8 w-1/2 px-4 py-2 font-bold text-lg text-white bg-blue-500 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+                    className='ml-20 laptop-size w-1/2 px-4 py-2 font-bold text-lg text-white bg-blue-500 rounded-full transition-all hover:bg-blue-700 focus:outline-none focus:shadow-outline'
                     type='submit'
                   >
                     Register Account

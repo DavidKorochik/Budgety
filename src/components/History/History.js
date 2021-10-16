@@ -12,16 +12,8 @@ export default function History() {
   useEffect(async () => {
     setTimeout(async () => {
       await getAllTransactions();
-    }, 1000);
+    }, 2000);
   }, []);
-
-  const formatNumber = (num) => {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-  };
-
-  const total = transactions.map((t) => Number(t.amount));
-
-  const balance = total.reduce((acc, val) => (acc += val), 0);
 
   return (
     <Fragment>

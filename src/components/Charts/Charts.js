@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
+import './Charts.css';
 
 export default function Charts() {
   const { transactions } = useContext(TransactionsContext);
@@ -39,7 +40,7 @@ export default function Charts() {
   };
 
   return (
-    <div className='flex justify-center ml-40 mt-16 items-center w-1/4'>
+    <div className='flex justify-center charts ml-40 mt-16 items-center w-1/4'>
       {incomes === 0 && expanses === 0 ? (
         <h1 className='text-blue-500 text-4xl'>
           You need Expnases or Incomes for{' '}
