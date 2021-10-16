@@ -1,10 +1,17 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
+import { useHistory } from 'react-router-dom';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 import './Charts.css';
 
 export default function Charts() {
-  const { transactions } = useContext(TransactionsContext);
+  const { transactions, getAllTransactions } = useContext(TransactionsContext);
+
+  let history = useHistory();
+
+  useEffect(async () => {
+    await getAllTransactions();
+  }, []);
 
   // const getMonthName = (month) => {
   //   const d = new Date();
