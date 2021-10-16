@@ -70,8 +70,12 @@ export default function TransactionReducer(state, action) {
     case FILTER_TRANSACTIONS:
       return {
         ...state,
-        filter: state.transactions.filter((t) =>
-          t.description.toLowerCase().includes(action.payload.toLowerCase())
+        filter: state.transactions.filter(
+          (t) =>
+            t.description
+              .toLowerCase()
+              .includes(action.payload.toLowerCase()) ||
+            t.amount.toLowerCase().includes(action.payload.toLowerCase())
         ),
         loading: false,
       };

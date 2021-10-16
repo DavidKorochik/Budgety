@@ -3,6 +3,7 @@ import { TransactionsContext } from '../../store/transactions/TransactionsState'
 import Transaction from '../Transaction/Transaction';
 import TransactionFilter from '../TransactionFilter/TransactionFilter';
 import Spinner from '../../utils/Spinner';
+import { DateRangePicker } from 'react-dates';
 import './History.css';
 
 export default function History() {
@@ -26,6 +27,17 @@ export default function History() {
             <span className='text-blue-500 font-bold ml-4'>Transactions</span>
           </div>
           <TransactionFilter />
+          {/* <DateRangePicker
+          // startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+          // startDateId='your_unique_start_date_id' // PropTypes.string.isRequired,
+          // endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+          // endDateId='your_unique_end_date_id' // PropTypes.string.isRequired,
+          // onDatesChange={({ startDate, endDate }) =>
+          //   this.setState({ startDate, endDate })
+          // } // PropTypes.func.isRequired,
+          // focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+          // onFocusChange={(focusedInput) => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+          /> */}
           <section className='container mx-auto p-6 text-center bg-transparent'>
             <div className='w- mb-8 overflow-hidden text-center rounded-lg shadow-lg '>
               <div className='w-full text-center overflow-x-auto '>

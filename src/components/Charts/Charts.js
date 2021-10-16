@@ -2,15 +2,19 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { useHistory } from 'react-router-dom';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
+import Spinner from '../../utils/Spinner';
 import './Charts.css';
 
 export default function Charts() {
-  const { transactions, getAllTransactions } = useContext(TransactionsContext);
+  const { transactions, getAllTransactions, loading } =
+    useContext(TransactionsContext);
 
   let history = useHistory();
 
   useEffect(async () => {
-    await getAllTransactions();
+    setTimeout(async () => {
+      await getAllTransactions();
+    }, 2000);
   }, []);
 
   // const getMonthName = (month) => {
@@ -47,38 +51,47 @@ export default function Charts() {
   };
 
   return (
-    <div className='flex justify-center charts ml-40 mt-16 items-center w-1/4'>
-      {incomes === 0 && expanses === 0 ? (
-        <h1 className='text-blue-500 text-4xl'>
-          You need Expnases or Incomes for{' '}
-          <span className='font-extrabold'>"Expanses VS Incomes" Chart</span>!
-        </h1>
+    <Fragment>
+      {loading ? (
+        <Spinner />
       ) : (
-        <Fragment>
-          <Pie
-            data={state}
-            options={{
-              plugins: {
-                title: {
-                  display: true,
-                  color: 'white',
-                  font: { weight: 'bold', size: 24 },
-                  text: 'Expanses VS Incomes Chart',
-                },
-                legend: {
-                  labels: {
-                    font: {
-                      size: 14,
+        <div className='flex justify-center charts ml-40 mt-16 items-center w-1/4'>
+          {incomes === 0 && expanses === 0 ? (
+            <h1 className='text-blue-500 text-4xl'>
+              You need Expnases or Incomes for{' '}
+              <span className='font-extrabold'>
+                "Expanses VS Incomes" Chart
+              </span>
+              !
+            </h1>
+          ) : (
+            <Fragment>
+              <Pie
+                data={state}
+                options={{
+                  plugins: {
+                    title: {
+                      display: true,
+                      color: 'white',
+                      font: { weight: 'bold', size: 24 },
+                      text: 'Expanses VS Incomes Chart',
                     },
-                    color: 'white',
-                    padding: 12,
+                    legend: {
+                      labels: {
+                        font: {
+                          size: 14,
+                        },
+                        color: 'white',
+                        padding: 12,
+                      },
+                    },
                   },
-                },
-              },
-            }}
-          />
-        </Fragment>
+                }}
+              />
+            </Fragment>
+          )}
+        </div>
       )}
-    </div>
+    </Fragment>
   );
 }
