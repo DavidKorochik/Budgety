@@ -1,20 +1,23 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { TransactionsContext } from '../../store/transactions/TransactionsState';
 import Spinner from '../../utils/Spinner';
 import Charts from '../Charts/Charts';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../../utils/animations';
 import './Balance.css';
 
 export default function Balance() {
   const { transactions, getAllTransactions, loading } =
     useContext(TransactionsContext);
 
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(async () => {
     setTimeout(async () => {
-      setTimeout(async () => {
-        await getAllTransactions();
-      }, 2000);
-    });
-  });
+      await getAllTransactions();
+      setIsVisible(!isVisible);
+    }, 1500);
+  }, []);
 
   const formatNumber = (num) => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -41,15 +44,26 @@ export default function Balance() {
         <Spinner />
       ) : (
         <Fragment>
-          <div className='mr-32 desktop'>
-            <div
+          <motion.div
+            variants={fadeIn}
+            animate={isVisible ? 'show' : ''}
+            initial='hidden'
+            className='mr-32 desktop'
+          >
+            <motion.div
+              variants={fadeIn}
+              animate={isVisible ? 'show' : ''}
+              initial='hidden'
               className={`flex justify-end mt-10 mr-52 text-blue-500 text-4xl ${
                 balance < 0 ? 'expanse' : ''
               }`}
             >
               <h4 className='mr-1 font-bold mt-10'>Your Balance</h4>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
+              variants={fadeIn}
+              animate={isVisible ? 'show' : ''}
+              initial='hidden'
               className={`${balance === 0 ? 'mr-52' : ''} ${
                 balance > 0 && balance < 100 ? 'mr-44' : ''
               } ${balance > 99 && balance < 1000 ? 'mr-36' : ''} ${
@@ -70,9 +84,14 @@ export default function Balance() {
                   : formatNumber(balance.toFixed(3))}
               </h1>
               <span className='ml-2'>&#8362;</span>
-            </div>
-          </div>
-          <div className='flex ml-10 absolute top-40'>
+            </motion.div>
+          </motion.div>
+          <motion.div
+            variants={fadeIn}
+            animate={isVisible ? 'show' : ''}
+            initial='hidden'
+            className='flex ml-10 absolute top-40'
+          >
             <h3 className='text-4xl ml-10 font-bold text-white uppercase'>
               Income
             </h3>
@@ -82,18 +101,22 @@ export default function Balance() {
                 : formatNumber(totalIncomes.toFixed(3))}
               <span className='ml-2'>&#8362;</span>
             </h3>
-            <div>
+            <motion.div
+              variants={fadeIn}
+              animate={isVisible ? 'show' : ''}
+              initial='hidden'
+            >
               <h3 className='text-4xl font-bold ml-20 text-white uppercase'>
                 Expanse
               </h3>
-            </div>
+            </motion.div>
             <h3 className='expanse text-4xl ml-8 text-blue-500'>
               {totalExpanses === 0
                 ? totalExpanses.toFixed(3)
                 : formatNumber(totalExpanses.toFixed(3))}
               <span className='ml-2'>&#8362;</span>
             </h3>
-          </div>
+          </motion.div>
           <Charts />
         </Fragment>
       )}
