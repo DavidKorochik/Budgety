@@ -75,7 +75,8 @@ export default function TransactionReducer(state, action) {
             t.description
               .toLowerCase()
               .includes(action.payload.toLowerCase()) ||
-            t.amount.toLowerCase().includes(action.payload.toLowerCase())
+            t.amount.toLowerCase().includes(action.payload.toLowerCase()) ||
+            t.date.toLowerCase().includes(action.payload.toLowerCase())
         ),
         loading: false,
       };

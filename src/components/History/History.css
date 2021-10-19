@@ -1,3 +1,12 @@
 .color {
   color: #7a2048;
 }
+
+@import url('https://cdn.syncfusion.com/ej2/material.css');
+
+@media only screen and (min-width: 1920px) {
+  .laptop-xls {
+    position: absolute;
+    left: 22%;
+  }
+}

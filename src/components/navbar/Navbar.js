@@ -1,17 +1,21 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../store/auth/AuthState';
+import Spinner from '../../utils/Spinner';
 import './Navbar.css';
 
 export default function Navbar() {
   const { isAuthenticated, user, logoutUser, loadUser } =
     useContext(AuthContext);
 
+  const [userLoaded, setUserLoaded] = useState(false);
+
   const location = useLocation();
 
   useEffect(async () => {
     if (localStorage.getItem('token')) {
       await loadUser();
+      setUserLoaded(!userLoaded);
     }
   }, []);
 
@@ -142,12 +146,18 @@ export default function Navbar() {
                   </Link>
 
                   {user !== null ? (
-                    <span className='text-white px-3 py-2 rounded-md text-mid font-medium text-blue-500'>
-                      Hello{' '}
-                      <span className='text-blue-500 font-bold ml-2 text-xl'>
-                        {user.fullName}
-                      </span>
-                    </span>
+                    <div>
+                      {!userLoaded ? (
+                        <Spinner className='w-10 h-10' />
+                      ) : (
+                        <span className='text-white px-3 py-2 rounded-md text-mid font-medium text-blue-500'>
+                          Hello{' '}
+                          <span className='text-blue-500 font-bold ml-2 text-xl'>
+                            {user.fullName}
+                          </span>
+                        </span>
+                      )}
+                    </div>
                   ) : (
                     ''
                   )}
